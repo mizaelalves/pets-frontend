@@ -5,8 +5,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import { ThemeProvider as ThemeProviderLegacy } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import HeaderContainer from "../components/Header/header";
-import theme from "../theme";
-import createEmotionCache from "../createEmotionCache";
+import theme from "../mui/theme";
+import createEmotionCache from "../mui/createEmotionCache";
+import Admin from "../components/Admin/admin"
+import {useRouter} from'next/router'
 
 const clientSideEmotionCache = createEmotionCache();
 interface MyAppProps extends AppProps {
@@ -15,12 +17,14 @@ interface MyAppProps extends AppProps {
 
 function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const router = useRouter();
+  
   return (
     <>
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <ThemeProviderLegacy theme={theme}>
-            <HeaderContainer />
+          {router.pathname === '/'? <HeaderContainer/> : <Admin/>}
             <Component {...pageProps} />
             <CssBaseline />
           </ThemeProviderLegacy>

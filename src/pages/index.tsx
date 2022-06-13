@@ -1,12 +1,25 @@
 import type { NextPage } from "next";
 import Title from "../components/Header/title";
 import Lista from "../components/Lista/lista";
+import {
+  Dialog,
+  TextField,
+  Grid,
+  DialogActions,
+  Button,
+  Snackbar,
+} from "@mui/material";
+import {useIndex} from '../data/hooks/pages/useIndex'
+
 
 const Home: NextPage = () => {
+  const { listaPets, petSelecionado,valor, email,mensagem,adotar, setMensagem, setPetSelecionado, setEmail, setValor } = useIndex()
+
+  useIndex();
   return (
     <div>
       <Title
-        title="opa"
+        title=""
         subtitle={
           <span>
             Com um pequeno valor mensal, você <br />
@@ -15,28 +28,33 @@ const Home: NextPage = () => {
         }
       />
       <Lista
-        pets={[
-          {
-            id: 1,
-            nome: "bidu",
-            historia:
-              " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate recusandae optio quidem et exercitationem nam alias, pariatur dolore! Doloremque ad accusamus tempora dolorum sunt. Animi dolores ipsa aut officiis impedit.",
-
-            imagem:
-              "https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg",
-          },
-          {
-            id: 2,
-            nome: "bidu",
-            historia:
-              " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate recusandae optio quidem et exercitationem nam alias, pariatur dolore! Doloremque ad accusamus tempora dolorum sunt. Animi dolores ipsa aut officiis impedit.",
-
-            imagem:
-              "https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg",
-          }
-          
-        ]}
+        pets={listaPets}
+        onSelect={(pet) => setPetSelecionado(pet)}
       />
+      <Dialog open={petSelecionado !== null} fullWidth PaperProps={{ sx: { p: 5 } } } onClose={()=> setPetSelecionado(null)}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField label={"Email"} type={"email"} value={email} fullWidth
+            onChange={(event)=> setEmail(event.target.value)}
+            > </TextField>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label={"Quantia por mes"}
+              type={"number"}
+              fullWidth
+              value={valor}
+              onChange={(event)=> setValor(event.target.value)}
+            ></TextField>
+          </Grid>
+        </Grid>
+        <DialogActions sx={{ mt: 5 }}>
+          <Button color={"secondary"} onClick={() => setPetSelecionado(null)}>Cancelar</Button>
+          <Button variant={"contained"} onClick={() => adotar()}>Confirmar adoção</Button>
+        </DialogActions>
+      </Dialog>
+      <Snackbar open={mensagem.length > 0} message={mensagem} autoHideDuration={2500}
+      onClose={() => setMensagem('')}></Snackbar>
     </div>
   );
 };
