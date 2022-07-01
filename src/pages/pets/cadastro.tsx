@@ -30,14 +30,12 @@ const Cadastro: NextPage = () => {
   const id = data.user_id
   
 //---------------get user name ------------------------//
-  const {listUsers} = useUserName();
+  const {username} = useUserName();
 
-  const userName = getUserName(listUsers, id)
-  
 
   return (
     <div>
-      <h1>Ola {userName}</h1>
+      <h1>Ola {username}</h1>
       <Title
         title={"Cadastro de pet para adoção"}
         subtitle={"Preencha os dados do novo Pet"}
@@ -108,7 +106,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) =>{
   if(!token){
     return {
       redirect: {
-        destination: '/',
+        destination: '/user/',
         permanent: false
       }
     }

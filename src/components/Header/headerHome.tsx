@@ -10,7 +10,7 @@ export default function HeaderHome() {
       <LinksContainer>
       <Button variant="contained"><Link component={NextLink} href={"/user/login"}>Login</Link></Button>
        
-        <Button variant="contained"><Link component={NextLink} href={"/user/register"} >Inscreva-se</Link></Button>
+        <Button variant="contained"><Link component={NextLink} href={"/user/registrar"} >Inscreva-se</Link></Button>
       </LinksContainer>
       </div>
     </HeaderContainer>

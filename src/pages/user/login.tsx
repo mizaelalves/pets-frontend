@@ -3,7 +3,6 @@ import { Button, Grid, TextField, Paper } from "@mui/material";
 import Title from "../../components/Header/title";
 import { useState, SyntheticEvent, useContext } from "react";
 import { ApiServices } from "../../data/services/apiServices";
-import { AxiosError } from "axios";
 import { AuthContext } from "../../data/context/AuthContext";
 import { parseCookies } from "nookies";
 

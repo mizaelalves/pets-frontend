@@ -1,7 +1,7 @@
 import { SubTitle, TitleStyled } from "./styles/title.styled";
 
 interface TituloProps {
-  title: string;
+  title?: string;
   subtitle: string | JSX.Element
 }
 

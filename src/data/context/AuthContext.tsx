@@ -53,7 +53,7 @@ export function AuthProvider(props: { children: JSX.Element }) {
         }
       });
 
-    Router.push("/pets/cadastro");
+    Router.push("/user/dashboard");
   }
 
   return (
