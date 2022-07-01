@@ -4,13 +4,15 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeProvider as ThemeProviderLegacy } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import HeaderContainer from "../components/Header/header";
+import HeaderContainer from "../components/Header/headerHome";
 import theme from "../mui/theme";
 import createEmotionCache from "../mui/createEmotionCache";
-import Admin from "../components/Admin/admin"
-import {useRouter} from'next/router'
+import UserHeader from "../components/Header/userHeader";
+import { useRouter } from "next/router";
+import { AuthProvider } from "../data/context/AuthContext";
 
 const clientSideEmotionCache = createEmotionCache();
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -18,14 +20,25 @@ interface MyAppProps extends AppProps {
 function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const router = useRouter();
-  
+
   return (
     <>
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <ThemeProviderLegacy theme={theme}>
-          {router.pathname === '/'? <HeaderContainer/> : <Admin/>}
-            <Component {...pageProps} />
+
+              {router.pathname === "/" ||
+              router.pathname === "/user/login" ||
+              router.pathname === "/user/register" ? (
+                <HeaderContainer />
+              ) : (
+                <UserHeader />
+              )}
+              <AuthProvider>
+                <Component {...pageProps} />
+              </AuthProvider>
+
+   
             <CssBaseline />
           </ThemeProviderLegacy>
         </ThemeProvider>

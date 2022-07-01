@@ -10,11 +10,21 @@ import {
   Snackbar,
 } from "@mui/material";
 import {useIndex} from '../data/hooks/pages/useIndex'
+import { parseCookies } from "nookies";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import { ApiServices } from "../data/services/apiServices";
 
 
 const Home: NextPage = () => {
   const { listaPets, petSelecionado,valor, email,mensagem,adotar, setMensagem, setPetSelecionado, setEmail, setValor } = useIndex()
 
+  interface UserDataProps {
+    id: string;
+    name: SVGStringList;
+  }
+  
+  
   useIndex();
   return (
     <div>
@@ -58,5 +68,29 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+
+
+
+
+/*
+export const getServerSideProps: GetServerSideProps = async (ctx) =>{
+  const { ['pet-token']: token} = parseCookies(ctx)
+
+  if(!token){
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  return{
+    props: {}
+  }
+}
+*/
+
 
 export default Home;

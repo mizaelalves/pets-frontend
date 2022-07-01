@@ -1,18 +1,17 @@
-import { AdminCont, Logo, LinksContainer } from "./admin.style";
-import { Link, Box } from "@mui/material";
+import { AdminCont, Logo, LinksContainer } from "./styles/userHeader.style";
+import { Link, Box, Button } from "@mui/material";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 
-export default function Admin() {
+export default function UserHeader() {
   return (
     <AdminCont>
       <div>
         <Logo src={"/imagens/logo.svg"} alt={"Adote um pet"} />
         <LinksContainer>
-          <Link component={NextLink} href={"/pets/cadastro"}>
+          <Button variant="contained"><Link component={NextLink} href={"/pets/cadastro"}>
             <a>Cadastrar Pet</a>
-          </Link>
-          <Link component={NextLink} href={"/pets/relatorio"}>
+          </Link></Button>
+          <Button variant="contained"><Link component={NextLink} href={"/pets/relatorio"}>
             <a>
               Relatorio{" "}
               <Box
@@ -23,7 +22,7 @@ export default function Admin() {
                 de Adoção
               </Box>
             </a>
-          </Link>
+          </Link></Button>
         </LinksContainer>
       </div>
     </AdminCont>

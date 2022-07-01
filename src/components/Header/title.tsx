@@ -1,4 +1,4 @@
-import { SubTitle, TitleStyled } from "./title.styled";
+import { SubTitle, TitleStyled } from "./styles/title.styled";
 
 interface TituloProps {
   title: string;

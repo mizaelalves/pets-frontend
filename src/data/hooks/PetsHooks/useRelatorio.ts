@@ -8,7 +8,7 @@ export function useRelatorio(){
   const [listaRelatorio, setListaRelatorio] = useState<Relatorio[]>([])
 
    useEffect(() =>{
-      ApiServices.get('/adocoes').then((resposta) =>{
+      ApiServices.get('/adocao/').then((resposta) =>{
       setListaRelatorio(resposta.data)
     })
   },[])

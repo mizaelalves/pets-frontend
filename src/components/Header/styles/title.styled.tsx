@@ -2,7 +2,7 @@ import {styled} from "@mui/material/styles";
 
 
 export const TitleStyled = styled('h1')`
-  font-size: 20px;
+  font-size: 23px;
   text-align: center;
   margin-top: ${({theme}) => theme.spacing(5)};
 `

@@ -2,32 +2,38 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { Pet } from "../../@types/Pets";
 import { ApiServices } from "../../services/apiServices";
+import { User } from '../../@types/User'
+import { parseCookies } from "nookies";
+import jwt_decode from "jwt-decode";
 
 export function useIndex() {
-  const [listaPets, setListaPets] = useState([
-      
-    ]),
+
+    const [listaPets, setListaPets] = useState([]),
     [petSelecionado, setPetSelecionado] = useState<Pet | null>(null),
     [email, setEmail] = useState(""),
     [valor, setValor] = useState(""),
     [mensagem, setMensagem] = useState("");
+
     useEffect(()=>{
-      ApiServices.get('/pets')
+      ApiServices.get('/pets/')
       .then((response) => {
         setListaPets(response.data)
-        console.log(response.data)
+
       })
     },[])
+
+
     useEffect(()=>{
       if(petSelecionado === null){
         limparFormulario()
       }
     }, [petSelecionado])
 
+
   function adotar() {
     if(petSelecionado !== null){  
       if(validarDadosAdocao()){
-        ApiServices.post('/pets1', {
+        ApiServices.post('/adocao/create/', {
           pet_id: petSelecionado.id,
           email: email,
           valor: valor
