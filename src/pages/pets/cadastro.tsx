@@ -4,17 +4,8 @@ import Title from "../../components/Header/title";
 import { parseCookies } from "nookies";
 import { Paper, Grid, TextField, Button, Snackbar } from "@mui/material";
 import { ApiServices } from "../../data/services/apiServices";
-import { useUserName } from "../../data/hooks/useUserName";
+import { useUserName } from "../../data/hooks/pages/useUserName";
 import jwt from 'jsonwebtoken'
-function getUserName(userList: any, user_id: string): string{
-  return userList.map((userList: { id: string; user_name: string; }) => {
-    if (userList.id === user_id) {
-      const username = userList.user_name;
-      return username
-    }
-
-  });
-}
 
 const Cadastro: NextPage = () => {
   const { "pet-token": token } = parseCookies();
@@ -39,7 +30,7 @@ const Cadastro: NextPage = () => {
       <Title
         title={"Cadastro de pet para adoção"}
         subtitle={"Preencha os dados do novo Pet"}
-      ></Title>
+      />
 
       <Paper sx={{ maxWidth: 970, mx: "auto", p: 5 }}>
         <Grid container spacing={3}>

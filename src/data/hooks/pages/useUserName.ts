@@ -1,28 +1,26 @@
-import { ApiServices } from "../services/apiServices";
+import { ApiServices } from "../../services/apiServices";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import { User } from "../@types/User";
+import { User } from "../../@types/User";
 
 import jwt from "jsonwebtoken";
 
 export function useUserName() {
   const { "pet-token": token } = parseCookies();
   const [listUsers, setListUser] = useState<User[]>([]);
-  const [username, setUserName] = useState('')
-  const decodeId = decodeTokenId()
+  const decodeId = decodeTokenId();
+  const username = getUserName(listUsers, decodeId);
+
   useEffect(() => {
     ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     ApiServices.get("/users/").then((response) => {
-
       setListUser(response.data);
-      const decodeUsername =getUserName(listUsers, decodeId)
-      setUserName(decodeUsername)
     });
-  }, [decodeId, listUsers, token]);
+  }, [token]);
 
   //return { listUsers };
 
-  return {username}
+  return { username };
 }
 
 export function getUserName(userList: any, user_id: string): string {
@@ -44,5 +42,5 @@ export function decodeTokenId() {
     data = "vazio";
   }
   const id = data.user_id;
-  return id
+  return id;
 }
