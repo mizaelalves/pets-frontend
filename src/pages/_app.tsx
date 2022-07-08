@@ -29,7 +29,7 @@ function MyApp(props: MyAppProps) {
             {router.pathname === "/" ? (
               <HeaderContainer />
             ) : router.pathname === "/user/dashboard" ? (
-              <HeaderContainer />
+              <UserHeader />
             ) : router.pathname === "/user/subscribe" ? (
               <HeaderAuth nameType={"subscribe"} />
             ) : (

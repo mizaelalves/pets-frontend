@@ -4,26 +4,24 @@ import Title from "../../components/Header/title";
 import { parseCookies } from "nookies";
 import { Paper, Grid, TextField, Button, Snackbar } from "@mui/material";
 import { ApiServices } from "../../data/services/apiServices";
-import { useUserName } from "../../data/hooks/pages/useUserName";
-import jwt from 'jsonwebtoken'
+import { useShowUserName } from "../../data/hooks/pages/useShowUserName";
+import jwt from "jsonwebtoken";
+
+function showUserName() {
+
+  //primeiro pegar as informação do cookie do usuário que esta conectado
+
+}
 
 const Cadastro: NextPage = () => {
   const { "pet-token": token } = parseCookies();
-  ApiServices.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const { mensagem, setNome, setHistoria, setFoto, cadastrar } = useCadastro();
   const decode = jwt.decode(token);
-  
-  let data: any = decode
-  if(data === null){
-    data = 'vazio'
-  }
-  const id = data.user_id
-  
-//---------------get user name ------------------------//
-  const {username} = useUserName();
 
-
+  //---------------get user name ------------------------//
+  const {username} = useShowUserName();
   return (
     <div>
       <h1>Ola {username}</h1>
@@ -91,21 +89,21 @@ const Cadastro: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) =>{
-  const { ['pet-token']: token} = parseCookies(ctx)
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { ["pet-token"]: token } = parseCookies(ctx);
 
-  if(!token){
+  if (!token) {
     return {
       redirect: {
-        destination: '/user/',
-        permanent: false
-      }
-    }
+        destination: "/user/",
+        permanent: false,
+      },
+    };
   }
 
-  return{
-    props: {}
-  }
-}
+  return {
+    props: {},
+  };
+};
 
 export default Cadastro;
