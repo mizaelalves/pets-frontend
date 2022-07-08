@@ -14,12 +14,14 @@ export function useIndex() {
     [valor, setValor] = useState(""),
     [mensagem, setMensagem] = useState("");
 
-    useEffect(()=>{
-      ApiServices.get('/pets/')
-      .then((response) => {
-        setListaPets(response.data)
+    const getData = async () =>{
+      const response = await ApiServices.get('/pets/');
+      setListaPets(response.data)
+      console.log(response);
+    }
 
-      })
+    useEffect(()=>{
+      getData();
     },[])
 
 
