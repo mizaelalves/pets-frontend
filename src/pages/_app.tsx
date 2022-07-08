@@ -10,7 +10,7 @@ import createEmotionCache from "../mui/createEmotionCache";
 import UserHeader from "../components/Header/userHeader";
 import { useRouter } from "next/router";
 import { AuthProvider } from "../data/context/AuthContext";
-
+import HeaderAuth from "../components/Header/headerAuth";
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
@@ -26,19 +26,18 @@ function MyApp(props: MyAppProps) {
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <ThemeProviderLegacy theme={theme}>
-
-              {router.pathname === "/" ||
-              router.pathname === "/user/login" ||
-              router.pathname === "/user/register" ? (
-                <HeaderContainer />
-              ) : (
-                <UserHeader />
-              )}
-              <AuthProvider>
-                <Component {...pageProps} />
-              </AuthProvider>
-
-   
+            {router.pathname === "/" ? (
+              <HeaderContainer />
+            ) : router.pathname === "/user/dashboard" ? (
+              <HeaderContainer />
+            ) : router.pathname === "/user/subscribe" ? (
+              <HeaderAuth nameType={"subscribe"} />
+            ) : (
+              <HeaderAuth nameType={"login"} />
+            )}
+            <AuthProvider>
+              <Component {...pageProps} />
+            </AuthProvider>
             <CssBaseline />
           </ThemeProviderLegacy>
         </ThemeProvider>

@@ -1,12 +1,59 @@
-import { HeaderContainer, Logo, LinksContainer } from "./styles/headerHome.style";
+import {
+  HeaderContainer,
+  Logo,
+  LinksContainer,
+} from "./styles/headerHome.style";
+import { useRouter } from "next/router";
+import NextLink from "next/link";
 import { Link, Button } from "@mui/material";
-import NextLink from "next/link"
 
-export default function HeaderAuth() {
+interface AuthProps {
+  nameType: string;
+}
+
+export default function HeaderAuth(props: AuthProps) {
+  const router = useRouter();
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    router.push("/");
+  };
+
   return (
     <HeaderContainer>
       <div>
-      <Logo src="/imagens/logo.svg" />
+        <Logo
+          src="/imagens/logo.svg"
+          alt="adote um pet"
+          onClick={handleClick}
+          sx={{ cursor: "pointer" }}
+        />
+
+        {props.nameType === "login" ? (
+          <LinksContainer>
+            <Link component={NextLink} href={"/user/subscribe"}>
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{ width: "105px", height: "36px" }}
+              >
+                Inscreva-se
+              </Button>
+            </Link>
+          </LinksContainer>
+        ) : (
+          <LinksContainer>
+            <Link component={NextLink} href={"/user/login"}>
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{ width: "105px", height: "36px" }}
+              >
+                Login
+              </Button>
+            </Link>
+          </LinksContainer>
+        )}
       </div>
     </HeaderContainer>
   );

@@ -1,6 +1,5 @@
 import { styled } from "@mui/material/styles";
 
-
 export const HeaderContainer = styled("header")`
   height: 115px;
   background-color: #f6f6f6;
