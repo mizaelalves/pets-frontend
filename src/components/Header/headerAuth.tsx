@@ -35,7 +35,7 @@ export default function HeaderAuth(props: AuthProps) {
               <Button
                 variant="contained"
                 size="medium"
-                sx={{ width: "105px", height: "36px" }}
+
               >
                 Inscreva-se
               </Button>
@@ -47,7 +47,7 @@ export default function HeaderAuth(props: AuthProps) {
               <Button
                 variant="contained"
                 size="medium"
-                sx={{ width: "105px", height: "36px" }}
+
               >
                 Login
               </Button>

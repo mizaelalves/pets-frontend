@@ -24,7 +24,10 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           borderRadius: "5px",
-          fontWeight: "normal",
+          fontWeight: "bold",
+          width: "108px",
+          height: "36px"
+        
         },
       },
     },

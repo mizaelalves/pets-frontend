@@ -1,7 +1,6 @@
 import { ApiServices } from "../../services/apiServices";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import { User } from "../../@types/User";
 
 import jwt from "jsonwebtoken";
 
@@ -20,7 +19,7 @@ function decodeTokenId() {
 
 export function useShowUserName() {
   //retorna o user_id decodificado
-  const user_id = decodeTokenId()
+  const user_id: number = decodeTokenId()
   const { "pet-token": token } = parseCookies();
   const [username, setUsername] = useState('');
   //pegar as informações de all/?user_id=id
