@@ -4,10 +4,9 @@ import { ApiServices } from "../services/apiServices";
 import Router from "next/router";
 import { setCookie, parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
-
+import { Snackbar } from "@mui/material";
 interface User {
   user_id: string;
-
 }
 
 interface SignInData {
@@ -24,7 +23,7 @@ type AuthContextType = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider(props: { children: JSX.Element }) {
-  const [user, setUser] = useState<User | any>(null);
+  const [user, setUser] = useState<User | any>(null)
 
   const isAuthenticated = !!user;
 
@@ -42,18 +41,14 @@ export function AuthProvider(props: { children: JSX.Element }) {
           maxAge: 60 * 60 * 1,
         });
 
-        ApiServices.defaults.headers.common['Authorization'] = `Bearer ${access}`
-
+        /*ApiServices.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${access}`;
+        */
         setUser({ user_id: objDecode.user_id });
-
+        Router.push("/user/dashboard");
       })
-      .catch((error: AxiosError<any>) => {
-        if (error !== null) {
-          console.log(error);
-        }
-      });
-
-    Router.push("/user/dashboard");
+     
   }
 
   return (

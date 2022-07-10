@@ -1,10 +1,12 @@
 import { GetServerSideProps, NextPage } from "next";
-import { Button, Grid, TextField, Paper } from "@mui/material";
+import { Button, Grid, TextField, Paper, Snackbar, Alert } from "@mui/material";
 import Title from "../../components/Header/title";
 import { useState, SyntheticEvent, useContext } from "react";
 import { ApiServices } from "../../data/services/apiServices";
 import { AuthContext } from "../../data/context/AuthContext";
 import { parseCookies } from "nookies";
+import { setServers } from "dns/promises";
+import { Axios, AxiosError } from "axios";
 
 
 const LoginUser: NextPage = () => {
@@ -15,15 +17,18 @@ const LoginUser: NextPage = () => {
   const {signIn}  = useContext(AuthContext)
   //const {register, handleSubmit} = useForm()
   const [email, setEmail] = useState(""),
-    [password, setPassword] = useState("");
+    [password, setPassword] = useState(""),
+    [error, setError] = useState("")
     const data = {email, password}
-  const submitHandler = async (e: SyntheticEvent) => {
+
+  const submitHandler = (e: SyntheticEvent,) => {
     e.preventDefault();
 
-    await signIn(data)
-
-  };
-
+      signIn(data).catch((error)=>{
+        setError(error.response?.data.detail)
+      }
+      )
+    }
   /*
   async function userLogin(){
     await ApiServices.post('/token/',{
@@ -81,6 +86,11 @@ const LoginUser: NextPage = () => {
           </Grid>
         </form>
       </Paper>
+      <Snackbar open={error.length > 0} autoHideDuration={2500} onClose={() => setError('')} >
+      <Alert  severity="error" sx={{ width: '100%' }} >
+            {error}
+      </Alert>
+      </Snackbar>
     </>
   );
 };
