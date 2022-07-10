@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
-import { ApiServices } from "../services/apiServices";
+import { ApiServices, AuthHeader } from "../services/apiServices";
 import Router from "next/router";
 import { setCookie, parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
@@ -31,7 +31,7 @@ export function AuthProvider(props: { children: JSX.Element }) {
     await ApiServices.post("/token/", {
       email,
       password,
-    })
+    }, AuthHeader)
       .then((response) => {
         const access = response.data.access;
         //const refresh = response.data.refresh;

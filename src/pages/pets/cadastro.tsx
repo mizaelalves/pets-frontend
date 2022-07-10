@@ -15,7 +15,7 @@ function showUserName() {
 
 const Cadastro: NextPage = () => {
   const { "pet-token": token } = parseCookies();
-  ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const { mensagem, setNome, setHistoria, setFoto, cadastrar } = useCadastro();
   const decode = jwt.decode(token);

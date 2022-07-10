@@ -25,9 +25,9 @@ const theme = createTheme({
           textTransform: "none",
           borderRadius: "5px",
           fontWeight: "bold",
-          width: "108px",
+          width: "auto",
           height: "36px"
-        
+          
         },
       },
     },

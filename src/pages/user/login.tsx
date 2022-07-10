@@ -12,7 +12,7 @@ import { Axios, AxiosError } from "axios";
 const LoginUser: NextPage = () => {
   //const { user } = useContext(AuthContext);
   const { "pet-token": token } = parseCookies();
-  ApiServices.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  //ApiServices.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
   const {signIn}  = useContext(AuthContext)
   //const {register, handleSubmit} = useForm()

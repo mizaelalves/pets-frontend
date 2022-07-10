@@ -17,7 +17,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 const Dashboard: NextPage = () => {
   const { "pet-token": token } = parseCookies();
 
-  ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   //---------------get user name ------------------------//
 
   const columns: GridColDef[] = [
