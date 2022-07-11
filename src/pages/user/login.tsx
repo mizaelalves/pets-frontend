@@ -2,16 +2,13 @@ import { GetServerSideProps, NextPage } from "next";
 import { Button, Grid, TextField, Paper, Snackbar, Alert } from "@mui/material";
 import Title from "../../components/Header/title";
 import { useState, SyntheticEvent, useContext } from "react";
-import { ApiServices } from "../../data/services/apiServices";
 import { AuthContext } from "../../data/context/AuthContext";
 import { parseCookies } from "nookies";
-import { setServers } from "dns/promises";
-import { Axios, AxiosError } from "axios";
 
 
 const LoginUser: NextPage = () => {
   //const { user } = useContext(AuthContext);
-  const { "pet-token": token } = parseCookies();
+
   //ApiServices.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
   const {signIn}  = useContext(AuthContext)
@@ -86,8 +83,8 @@ const LoginUser: NextPage = () => {
           </Grid>
         </form>
       </Paper>
-      <Snackbar open={error.length > 0} autoHideDuration={2500} onClose={() => setError('')} >
-      <Alert  severity="error" sx={{ width: '100%' }} >
+      <Snackbar open={error.length > 0} autoHideDuration={6500} onClose={() => setError('')} >
+      <Alert  severity="error" sx={{ width: '100%' }} variant="filled">
             {error}
       </Alert>
       </Snackbar>

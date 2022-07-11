@@ -2,6 +2,7 @@ import { AdminCont, Logo, LinksContainer } from "./styles/userHeader.style";
 import { Link, Box, Button } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { destroyCookie } from "nookies";
 
 export default function UserHeader() {
   const router = useRouter();
@@ -9,7 +10,11 @@ export default function UserHeader() {
     e.preventDefault();
     router.push("/");
   };
+  const handleDestroyCookie = (e: any) => {
+    destroyCookie(null, "pet-token");
+    destroyCookie(null, "pet-token");
 
+};
   return (
     <AdminCont>
       <div>
@@ -30,6 +35,11 @@ export default function UserHeader() {
               </Box>
             </a>
           </Link></Button>
+          <Button variant="contained" onClick={handleDestroyCookie}>
+              <Link component={NextLink} href={"/"} >
+                Sair
+              </Link>
+            </Button>
         </LinksContainer>
       </div>
     </AdminCont>

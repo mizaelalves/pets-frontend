@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
 import {useState} from 'react'
-import { ApiServices } from '../../services/apiServices';
+import { ApiServices, AuthHeader } from '../../services/apiServices';
 import { Relatorio } from '../../@types/Relatorio';
 
 export function useRelatorio(){
   const [listaRelatorio, setListaRelatorio] = useState<Relatorio[]>([])
 
    useEffect(() =>{
-      ApiServices.get('/adocao/').then((resposta) =>{
+      ApiServices.get('/adocao/', AuthHeader).then((resposta) =>{
       setListaRelatorio(resposta.data)
     })
   },[])

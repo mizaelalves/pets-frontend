@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import {useState} from 'react'
-import { ApiServices } from '../../services/apiServices';
+import { ApiServices, AuthHeader } from '../../services/apiServices';
 
 export function useCadastro(){
   const [nome, setNome] = useState(''),
@@ -14,7 +14,7 @@ export function useCadastro(){
         nome,
         historia,
         foto
-      }).then(() =>{
+      }, AuthHeader).then(() =>{
         Limpar();
         setMensagem('Pet cadastrado com sucesso')
       })
