@@ -2,9 +2,6 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { Pet } from "../../@types/Pets";
 import { ApiServices } from "../../services/apiServices";
-import { User } from '../../@types/User'
-import { parseCookies } from "nookies";
-import jwt_decode from "jwt-decode";
 
 export function useIndex() {
 
@@ -15,9 +12,13 @@ export function useIndex() {
     [mensagem, setMensagem] = useState("");
 
     const getData = async () =>{
-      const response = await ApiServices.get('/pets/');
-      setListaPets(response.data)
-      console.log(response);
+      try {
+        const response = await ApiServices.get('/pets')
+
+        setListaPets(response.data)
+      } catch (error) {
+        return error
+      }
     }
 
     useEffect(()=>{

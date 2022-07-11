@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+import { Button, CircularProgress, Box } from "@mui/material";
 import {
   Nome,
   Descricao,
@@ -8,7 +8,9 @@ import {
   ContainerInfo,
 } from "./lista.style";
 import { Pet } from "../../data/@types/Pets";
-import {TextServices} from '../../data/services/TextServices'
+import { TextServices } from "../../data/services/TextServices";
+import { AlignHorizontalCenter } from "@mui/icons-material";
+import { useState, useEffect } from "react";
 
 interface ListaProps {
   pets: Pet[];
@@ -16,6 +18,40 @@ interface ListaProps {
 }
 
 export default function CardPed(props: ListaProps) {
+  const handleReload = (e: any)=>{
+    window.location.reload();
+  }
+
+  function sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  function progress() {
+    return <CircularProgress />;
+  }
+  function reload() {
+
+    return (<Box sx={{display: "flex", alignItems: "center", flexDirection: "column", color: "gray"}} >
+    <h2>Ocorreu um erro</h2>
+    <Button variant="contained" onClick={handleReload}>Clique para atualizar a pagina</Button>
+    </Box>)
+  }
+
+  const [loading, setLoading] = useState(true);
+
+  function onLoading() {
+    if (loading) {
+      return progress();
+    }
+    return reload();
+  }
+  useEffect(() => {
+    sleep(5000).then(() => {
+      setLoading(false);
+    });
+
+  });
+
   const tamanhoMaximo = 200;
   return (
     <>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import {useState} from 'react'
-import { ApiServices } from '../../services/apiServices';
+import { ApiServices, AuthHeader } from '../../services/apiServices';
 import { Relatorio } from '../../@types/Relatorio';
 
 export function useRelatorio(){
