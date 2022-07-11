@@ -12,6 +12,6 @@ export const ApiServices = axios.create({
 
 export const AuthHeader = {
   headers:{
-    'Authorization': `Basic ${token}` 
+    'Authorization': `Bearer ${token}` 
   }
 }

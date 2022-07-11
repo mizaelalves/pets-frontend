@@ -35,7 +35,6 @@ export default function HeaderAuth(props: AuthProps) {
               <Button
                 variant="contained"
                 size="medium"
-
               >
                 Inscreva-se
               </Button>

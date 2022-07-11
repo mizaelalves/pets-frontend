@@ -12,10 +12,13 @@ export function useIndex() {
     [mensagem, setMensagem] = useState("");
 
     const getData = async () =>{
-      const response = await ApiServices.get('/pets')
+      try {
+        const response = await ApiServices.get('/pets')
 
-      setListaPets(response.data)
-      console.log(response);
+        setListaPets(response.data)
+      } catch (error) {
+        return error
+      }
     }
 
     useEffect(()=>{

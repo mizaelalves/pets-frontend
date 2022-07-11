@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useShowUserName } from "../../data/hooks/pages/useShowUserName";
 import { parseCookies, destroyCookie } from "nookies";
 
+
 export default function HeaderHome() {
   const { "pet-token": token } = parseCookies();
   /*
@@ -30,7 +31,8 @@ export default function HeaderHome() {
   const handleDestroyCookie = (e: any) => {
       destroyCookie(null, "pet-token");
       destroyCookie(null, "pet-token");
-
+      console.log("saiu com sucesso")
+      window.location.reload();
   };
   return (
     <HeaderContainer>
@@ -75,3 +77,4 @@ export default function HeaderHome() {
     </HeaderContainer>
   );
 }
+

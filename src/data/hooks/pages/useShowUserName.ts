@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 const { "pet-token": token } = parseCookies();
 
 function decodeTokenId() {
-
   const decode = jwt.decode(token);
 
   let data: any = decode;
@@ -16,25 +15,25 @@ function decodeTokenId() {
   const id = data.user_id;
   return id;
 }
-function verifyTokenExist(){
-  if(token != undefined){
-    return true
+function verifyTokenExist() {
+  if (token != undefined) {
+    return true;
   }
-  return false
+  return false;
 }
 
 export function useShowUserName() {
   //retorna o user_id decodificado
-  const user_id: number = decodeTokenId()
+  const user_id: number = decodeTokenId();
   const { "pet-token": token } = parseCookies();
-  const [username, setUsername] = useState('');
-
-  //pegar as informações de all/?user_id=id
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    ApiServices.get(`/users/all/?user_id=${user_id}`, AuthHeader).then((response) => {
-      setUsername(response.data[0].user_name);
-    });
+    ApiServices.get(`/users/all/?user_id=${user_id}`, AuthHeader).then(
+      (response) => {
+        setUsername(response.data[0].user_name);
+      }
+    );
   }, [token, user_id]);
-  return {username, verifyTokenExist}
+  return { username, verifyTokenExist };
 }

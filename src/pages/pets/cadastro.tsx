@@ -3,25 +3,16 @@ import { useCadastro } from "../../data/hooks/PetsHooks/useCadastro";
 import Title from "../../components/Header/title";
 import { parseCookies } from "nookies";
 import { Paper, Grid, TextField, Button, Snackbar } from "@mui/material";
-import { ApiServices } from "../../data/services/apiServices";
 import { useShowUserName } from "../../data/hooks/pages/useShowUserName";
-import jwt from "jsonwebtoken";
 
-function showUserName() {
-
-  //primeiro pegar as informação do cookie do usuário que esta conectado
-
-}
 
 const Cadastro: NextPage = () => {
-  const { "pet-token": token } = parseCookies();
-  //ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
   const { mensagem, setNome, setHistoria, setFoto, cadastrar } = useCadastro();
-  const decode = jwt.decode(token);
+
 
   //---------------get user name ------------------------//
   const {username} = useShowUserName();
+
   return (
     <div>
       <h1>Ola {username}</h1>
@@ -95,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!token) {
     return {
       redirect: {
-        destination: "/user/",
+        destination: "/",
         permanent: false,
       },
     };

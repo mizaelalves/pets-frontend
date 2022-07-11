@@ -10,12 +10,11 @@ import {
   Snackbar,
   TableContainer,
 } from "@mui/material";
-import { useShowUserName } from "../../data/hooks/pages/useShowUserName";
-import { ApiServices } from "../../data/services/apiServices";
+
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
 const Dashboard: NextPage = () => {
-  const { "pet-token": token } = parseCookies();
+
 
   //ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   //---------------get user name ------------------------//
