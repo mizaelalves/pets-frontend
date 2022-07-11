@@ -28,7 +28,7 @@ export default function CardPed(props: ListaProps) {
               <Descricao>
                 {TextServices.limitarTexto(pet.historia, tamanhoMaximo)}
               </Descricao>
-              <Button fullWidth onClick={() => {props.onSelect(pet), console.log(pet)}} variant={"contained"}>
+              <Button fullWidth sx={{width: "auto"}} onClick={() => {props.onSelect(pet), console.log(pet)}} variant={"contained"}>
                 {" "}
                 Adotar {pet.nome}
               </Button>

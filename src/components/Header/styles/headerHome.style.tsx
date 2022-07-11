@@ -15,6 +15,7 @@ export const HeaderContainer = styled("header")`
     gap: ${({theme}) => theme.spacing(2)};
     align-items: center;
   }
+
 `;
 
 export const Logo = styled("img")`
@@ -26,4 +27,5 @@ export const LinksContainer = styled("nav")`
   gap: ${({theme})=> theme.spacing(2)};
   flex-wrap: wrap;
   justify-content: flex-end;
+  align-items: center;
 `

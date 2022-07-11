@@ -2,6 +2,7 @@ import { HeaderContainer, Logo, LinksContainer } from "./styles/headerHome.style
 import { Link, Button } from "@mui/material";
 import NextLink from "next/link"
 import { useRouter } from "next/router";
+import { useShowUserName } from "../../data/hooks/pages/useShowUserName";
 
 export default function HeaderHome() {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function HeaderHome() {
     e.preventDefault();
     router.push("/");
   };
-  
+  const {username} = useShowUserName();
   return (
     <HeaderContainer>
       <div>
@@ -18,6 +19,7 @@ export default function HeaderHome() {
       <Button variant="contained"><Link component={NextLink} href={"/user/login"}>Login</Link></Button>
        
         <Button variant="contained"><Link component={NextLink} href={"/user/registrar"} >Inscreva-se</Link></Button>
+        <span>Ola, {username}</span>
       </LinksContainer>
       </div>
     </HeaderContainer>
