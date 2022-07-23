@@ -13,7 +13,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Roboto, sans-serif",
+    fontFamily: "Poppins"
   },
   shape: {
     borderRadius: "3px",
@@ -24,7 +24,6 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           borderRadius: "5px",
-          fontWeight: "bold",
           width: "auto",
           height: "36px"
           

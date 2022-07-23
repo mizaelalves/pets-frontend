@@ -11,6 +11,8 @@ import UserHeader from "../components/Header/userHeader";
 import { useRouter } from "next/router";
 import { AuthProvider } from "../data/context/AuthContext";
 import HeaderAuth from "../components/Header/headerAuth";
+import { Typography } from "@mui/material";
+import "../app.css"
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
@@ -26,6 +28,7 @@ function MyApp(props: MyAppProps) {
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <ThemeProviderLegacy theme={theme}>
+
             {router.pathname === "/" ? (
               <HeaderContainer />
             ) : router.pathname === "/user/dashboard" ? (
@@ -39,6 +42,7 @@ function MyApp(props: MyAppProps) {
               <Component {...pageProps} />
             </AuthProvider>
             <CssBaseline />
+ 
           </ThemeProviderLegacy>
         </ThemeProvider>
       </CacheProvider>

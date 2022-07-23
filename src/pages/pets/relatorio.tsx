@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Title from "../../components/Header/title";
-import { useRelatorio } from "../../data/hooks/PetsHooks/useRelatorio";
+import { useRelatorio } from "../../data/hooks/pages/useRelatorio";
 
 import {
   Paper,

@@ -6,7 +6,7 @@ import {
 import { Link, Button } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { useShowUserName } from "../../data/hooks/pages/useShowUserName";
+
 import { parseCookies, destroyCookie } from "nookies";
 
 
@@ -28,7 +28,6 @@ export default function HeaderHome() {
     e.preventDefault();
     router.push("/");
   };
-  const {username} = useShowUserName();
 
   const handleDestroyCookie = (e: any) => {
       destroyCookie(null, "pet-token");
@@ -55,7 +54,7 @@ export default function HeaderHome() {
               </Button>
 
               <Button variant="contained">
-                <Link component={NextLink} href={"/user/registrar"}>
+                <Link component={NextLink} href={"/user/subscribe"}>
                   Inscreva-se
                 </Link>
               </Button>

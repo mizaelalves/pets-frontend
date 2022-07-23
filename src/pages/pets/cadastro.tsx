@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import { useCadastro } from "../../data/hooks/PetsHooks/useCadastro";
+import { useCadastro } from "../../data/hooks/pages/useCadastro";
 import Title from "../../components/Header/title";
 import { parseCookies } from "nookies";
 import { Paper, Grid, TextField, Button, Snackbar } from "@mui/material";

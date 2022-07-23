@@ -20,7 +20,7 @@ const LoginUser: NextPage = () => {
 
   const submitHandler = (e: SyntheticEvent,) => {
     e.preventDefault();
-
+    console.log(e)
       signIn(data).catch((error)=>{
         setError(error.response?.data.detail)
       }
@@ -49,7 +49,7 @@ const LoginUser: NextPage = () => {
     <>
       <Title title={"Faça o seu login"} subtitle={""}></Title>
 
-      <Paper sx={{ maxWidth: 400, mx: "auto", p: 5 }}>
+      <Paper sx={{width:400, mx: "auto", p: 5,backgroundColor:"#f6f6f6", marginTop: "20px"}}>
         <form onSubmit={submitHandler}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -75,7 +75,7 @@ const LoginUser: NextPage = () => {
                 variant="contained"
                 type= "submit"
                 fullWidth
-                sx={{ marginTop: "20px", fontSize: "18px" }}
+                sx={{ marginTop: "20px"}}
               >
                 Login
               </Button>
