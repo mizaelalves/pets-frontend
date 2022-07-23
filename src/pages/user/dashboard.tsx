@@ -12,28 +12,29 @@ import {
 } from "@mui/material";
 
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { useState, useEffect } from "react";
+import { ApiServices } from "../../data/services/apiServices";
+import { useIndex } from "../../data/hooks/pages/useIndex";
+
+
 
 const Dashboard: NextPage = () => {
-
+  const { listaPets } = useIndex();
 
   //ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   //---------------get user name ------------------------//
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "lastName", headerName: "Last name", width: 130 },
+    { field: "id", headerName: "id", width: 70 },
+    { field: "nome", headerName: "Nome", width: 100 },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      width: 90,
+      field: "historia",
+      headerName: "Historia",
+
+      width: 250,
     }
   ];
 
-  const rows = [
-    { id: 1, lastName: "Snow", age: 35 },
-    { id: 2, lastName: "Lannister", age: 42 },
-  ];
 
   return (
     <div>
@@ -50,7 +51,7 @@ const Dashboard: NextPage = () => {
             <h3>Ultimos Pets cadastrados</h3>
             <Box sx={{ height: 400, width: "100%" }}>
               <DataGrid
-                rows={rows}
+                rows={listaPets}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
@@ -58,15 +59,7 @@ const Dashboard: NextPage = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sm={6}>
-          <h3>Ultimos Pets adotados</h3>
-            <Box sx={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-              />
-            </Box>
+            <h3>Ultimos Pets adotados</h3>
           </Grid>
         </Grid>
       </Paper>
