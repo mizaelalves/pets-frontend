@@ -17,12 +17,18 @@ const LoginUser: NextPage = () => {
     [password, setPassword] = useState(""),
     [error, setError] = useState("")
     const data = {email, password}
+    const [loading, setLoading]= useState(false);
 
   const submitHandler = (e: SyntheticEvent,) => {
     e.preventDefault();
+    setLoading(true)
     console.log(e)
-      signIn(data).catch((error)=>{
-        setError(error.response?.data.detail)
+      signIn(data).catch((err)=>{
+        if (err.message === "Network Error") {
+          // network error
+          setError('Error: Network Error')
+          setLoading(false)
+      } 
       }
       )
     }
@@ -47,8 +53,17 @@ const LoginUser: NextPage = () => {
   */
   return (
     <>
+          <Paper
+        sx={{
+          width: 400,
+          mx: "auto",
+          p: 0,
+          backgroundColor: "#f6f6f6",
+          marginTop: "20px",
+        }}
+      >
       <Title title={"Faça o seu login"} subtitle={""}></Title>
-
+      </Paper>
       <Paper sx={{width:400, mx: "auto", p: 5,backgroundColor:"#f6f6f6", marginTop: "20px"}}>
         <form onSubmit={submitHandler}>
           <Grid container spacing={3}>
@@ -76,6 +91,7 @@ const LoginUser: NextPage = () => {
                 type= "submit"
                 fullWidth
                 sx={{ marginTop: "20px"}}
+                disabled={loading}
               >
                 Login
               </Button>
@@ -83,7 +99,7 @@ const LoginUser: NextPage = () => {
           </Grid>
         </form>
       </Paper>
-      <Snackbar open={error.length > 0} autoHideDuration={6500} onClose={() => setError('')} >
+      <Snackbar open={error.length > 0} autoHideDuration={6500} onClose={() => {setError('')}} >
       <Alert  severity="error" sx={{ width: '100%' }} variant="filled">
             {error}
       </Alert>
