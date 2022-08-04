@@ -9,12 +9,13 @@ export function useIndex() {
     [petSelecionado, setPetSelecionado] = useState<Pet | null>(null),
     [email, setEmail] = useState(""),
     [valor, setValor] = useState(""),
-    [mensagem, setMensagem] = useState("");
+    [mensagem, setMensagem] = useState(""),
+    [isLoading, setIsLoading] = useState(true);
 
     const getData = async () =>{
       try {
         const response = await ApiServices.get('/pets')
-
+        setIsLoading(false)
         setListaPets(response.data)
       } catch (error) {
         return error
@@ -72,6 +73,7 @@ export function useIndex() {
     email,
     valor,
     mensagem,
+    isLoading,
     adotar,
     setPetSelecionado,
     setEmail,
