@@ -105,19 +105,7 @@ const Home: NextPage = () => {
               </Grid>
             </Grid>
             <DialogActions sx={{ mt: 5 }}>
-              <Button
-                color={"secondary"}
-                onClick={() => setPetSelecionado(null)}
-              >
-                Cancelar
-              </Button>
-              <Button
-                variant={"contained"}
-                sx={{ width: "auto" }}
-                onClick={() => adotar()}
-              >
-                Confirmar adoção
-              </Button>
+            
               <Button
                 color={"secondary"}
                 onClick={() => setPetSelecionado(null)}
