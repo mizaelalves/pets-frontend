@@ -14,7 +14,7 @@ export function useCadastro(){
         nome,
         historia,
         foto
-      }).then(() =>{
+      }, AuthHeader).then(() =>{
         Limpar();
         setMensagem('Pet cadastrado com sucesso')
       })

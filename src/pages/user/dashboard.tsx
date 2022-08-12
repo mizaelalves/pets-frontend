@@ -3,28 +3,22 @@ import { parseCookies } from "nookies";
 import {
   Paper,
   Grid,
-  Box,
-  Table,
-  TextField,
-  Button,
-  Snackbar,
-  TableContainer,
+  Box
 } from "@mui/material";
 
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { useState, useEffect } from "react";
-import { ApiServices } from "../../data/services/apiServices";
+import { DataGrid, GridColDef} from "@mui/x-data-grid";
+
 import { useIndex } from "../../data/hooks/pages/useIndex";
+import { useRelatorio } from "../../data/hooks/pages/useRelatorio";
 
 
 
 const Dashboard: NextPage = () => {
   const { listaPets } = useIndex();
-
-  //ApiServices.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const {listaRelatorio } = useRelatorio();
   //---------------get user name ------------------------//
 
-  const columns: GridColDef[] = [
+  const columnsPets: GridColDef[] = [
     { field: "id", headerName: "id", width: 70 },
     { field: "nome", headerName: "Nome", width: 100 },
     {
@@ -35,6 +29,16 @@ const Dashboard: NextPage = () => {
     }
   ];
 
+  const columnsAdotados: GridColDef[] = [
+    { field: "id", headerName: "id", width: 70 },
+    { field: "email", headerName: "Email", width: 300 },
+    {
+      field: "valor",
+      headerName: "Valor",
+
+      width: 100,
+    }
+  ];
 
   return (
     <div>
@@ -52,7 +56,7 @@ const Dashboard: NextPage = () => {
             <Box sx={{ height: 400, width: "100%" }}>
               <DataGrid
                 rows={listaPets}
-                columns={columns}
+                columns={columnsPets}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
               />
@@ -60,14 +64,6 @@ const Dashboard: NextPage = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <h3>Ultimos Pets adotados</h3>
-            <Box sx={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={listaPets}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-              />
-            </Box>
           </Grid>
         </Grid>
       </Paper>

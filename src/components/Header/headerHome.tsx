@@ -35,7 +35,7 @@ export default function HeaderHome() {
       console.log("saiu com sucesso")
       window.location.reload();
   };
-  return (
+  return ( 
     <HeaderContainer>
       <div>
         <Logo
@@ -45,7 +45,7 @@ export default function HeaderHome() {
           sx={{ cursor: "pointer" }}
         />
         <LinksContainer>
-          {token === undefined? (
+          {token === undefined ? (
             <>
               <Button variant="contained">
                 <Link component={NextLink} href={"/user/login"}>
