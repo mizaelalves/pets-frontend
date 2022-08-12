@@ -6,6 +6,7 @@ import { useUserSubscribe } from "../../data/hooks/pages/useUserSubscribe";
 import Router from "next/router";
 
 const SubscribenUser: NextPage = () => {
+  const [loading, setLoading]= useState(false);
   const {
     first_name,
     user_name,
@@ -51,13 +52,23 @@ const SubscribenUser: NextPage = () => {
 
 
       subscribeUser()
-    
+      setLoading(true)
+    }
+      
+
+  useEffect(() => {
+    if(error.length>0){
+      setLoading(false)
+    }
+
+  }, [error])
+  
     /*
         subscribeUser(data).catch((error)=>{
       setError(error.response?.data.detail)
     })
     */
-  };
+  
 
   return (
     <div>
@@ -144,6 +155,7 @@ const SubscribenUser: NextPage = () => {
                 variant="contained"
                 type="submit"
                 fullWidth
+                disabled={loading}
                 sx={{ marginTop: "20px"}}
               >
                 Login

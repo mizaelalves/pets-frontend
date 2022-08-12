@@ -26,9 +26,12 @@ export function useUserSubscribe() {
           router.push("/user/login")
         })
         .catch((error: AxiosError<any>) => {
-          if (error !== null) {
-            setError("Erro: " + error.response?.data.error.email);
-          }
+
+          if (error.message === "Network Error") {
+            // network error
+            setError('Error: Network Error')
+          } else{
+            setError("Erro: " + error.response?.data?.error?.email)}
         });
     
   }

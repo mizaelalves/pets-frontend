@@ -60,6 +60,14 @@ const Dashboard: NextPage = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <h3>Ultimos Pets adotados</h3>
+            <Box sx={{ height: 400, width: "100%" }}>
+              <DataGrid
+                rows={listaPets}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Paper>

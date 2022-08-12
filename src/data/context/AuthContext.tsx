@@ -1,10 +1,9 @@
-import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
 import { ApiServices, AuthHeader } from "../services/apiServices";
 import Router from "next/router";
 import { setCookie, parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
-import { Snackbar } from "@mui/material";
+import { recoverUserInformation } from "../services/authUser";
 interface User {
   user_id: string;
 }
@@ -26,6 +25,28 @@ export function AuthProvider(props: { children: JSX.Element }) {
   const [user, setUser] = useState<User | any>(null)
 
   const isAuthenticated = !!user;
+
+  useEffect(()=>{
+    const {'pet-token':token} =parseCookies()
+
+    if(token){
+      recoverUserInformation().then((response: any) => {
+        const access = response.data.access;
+        //const refresh = response.data.refresh;
+        const decode = JSON.stringify(jwt_decode(access));
+        const objDecode = JSON.parse(decode);
+        setCookie(undefined, "pet-token", access, {
+          maxAge: 60 * 60 * 1,
+        });
+
+        /*ApiServices.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${access}`;
+        */
+        setUser({ user_id: objDecode.user_id });
+      })
+    }
+  }, [])
 
   async function signIn({ email, password }: SignInData) {
     await ApiServices.post("/token/", {

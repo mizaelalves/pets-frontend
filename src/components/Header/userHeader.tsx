@@ -12,7 +12,6 @@ export default function UserHeader() {
   };
   const handleDestroyCookie = (e: any) => {
     destroyCookie(null, "pet-token");
-    destroyCookie(null, "pet-token");
     router.push("/");
 };
   return (

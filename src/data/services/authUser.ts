@@ -9,6 +9,13 @@ interface SignInRequestType{
 export async function SignInRequest(data: SignInRequestType){
   await ApiServices.post('/auth/user').then((response) => {
     const token = response.data.token
-    console.log(token)
+    return token
+  })
+}
+
+export async function recoverUserInformation(){
+  await ApiServices.post('/auth/user').then((response) => {
+    const token = response.data.token
+   return token
   })
 }
