@@ -74,7 +74,7 @@ const SubscribenUser: NextPage = () => {
     <div>
       <Paper
         sx={{
-          width: 400,
+          maxWidth: 400,
           mx: "auto",
           p: 0,
           backgroundColor: "#f6f6f6",
@@ -85,7 +85,7 @@ const SubscribenUser: NextPage = () => {
       </Paper>
       <Paper
         sx={{
-          width: 400,
+          maxWidth: 400,
           mx: "auto",
           p: 5,
           backgroundColor: "#f6f6f6",

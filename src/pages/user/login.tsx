@@ -36,7 +36,7 @@ const LoginUser: NextPage = () => {
     <>
           <Paper
         sx={{
-          width: 400,
+          maxWidth: 400,
           mx: "auto",
           p: 0,
           backgroundColor: "#f6f6f6",
@@ -45,7 +45,7 @@ const LoginUser: NextPage = () => {
       >
       <Title title={"Faça o seu login"} subtitle={""}></Title>
       </Paper>
-      <Paper sx={{width:400, mx: "auto", p: 5,backgroundColor:"#f6f6f6", marginTop: "20px"}}>
+      <Paper sx={{maxWidth: 400, mx: "auto", p: 5,backgroundColor:"#f6f6f6", marginTop: "20px"}}>
         <form onSubmit={submitHandler}>
           <Grid container spacing={3}>
             <Grid item xs={12}>

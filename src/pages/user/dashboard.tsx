@@ -44,7 +44,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <div>
-      <Paper sx={{ maxWidth: 1080, mx: "auto", p: 5, textAlign: "center" }}>
+  <Paper sx={{ maxWidth: 1080, mx: "auto", p: 5, textAlign: "center" }}>    
         <Grid
           container
           spacing={10}
