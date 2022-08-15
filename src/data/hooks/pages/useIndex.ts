@@ -23,7 +23,6 @@ export function useIndex() {
       }
     }
 
-
     useEffect(()=>{
       getData();
     },[])

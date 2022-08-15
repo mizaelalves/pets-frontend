@@ -34,43 +34,37 @@ export default function HeaderAuth(props: AuthProps) {
         {props.nameType === "login" ? (
           <LinksContainer>
             <Link component={NextLink} href={"/user/subscribe"}>
-              <Button
-                variant="contained"
-                size="medium"
-              >
+              <Button variant="contained" size="medium">
                 Inscreva-se
               </Button>
             </Link>
           </LinksContainer>
         ) : (
           <LinksContainer>
-            <Link component={NextLink} href={"/user/login"}>
-              <Button
-                variant="contained"
-                size="medium"
-              >
+            <Button variant="contained" size="medium">
+              <Link component={NextLink} href={"/user/login"}>
                 Login
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </LinksContainer>
         )}
       </div>
     </HeaderContainer>
   );
 }
-export const getServerSideProps: GetServerSideProps = async (ctx) =>{
-  const { ['pet-token']: token} = parseCookies(ctx)
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { ["pet-token"]: token } = parseCookies(ctx);
 
-  if(token){
+  if (token) {
     return {
       redirect: {
-        destination: '/user/dashboard',
-        permanent: false
-      }
-    }
+        destination: "/user/dashboard",
+        permanent: false,
+      },
+    };
   }
 
-  return{
-    props: {}
-  }
-}
+  return {
+    props: {},
+  };
+};

@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import { parseCookies } from "nookies";
+import { destroyCookie, parseCookies } from "nookies";
 import {
   Paper,
   Grid,
@@ -10,12 +10,14 @@ import { DataGrid, GridColDef} from "@mui/x-data-grid";
 
 import { useIndex } from "../../data/hooks/pages/useIndex";
 import { useRelatorio } from "../../data/hooks/pages/useRelatorio";
+import { useEffect } from "react";
 
 
 
 const Dashboard: NextPage = () => {
   const { listaPets } = useIndex();
-  const {listaRelatorio } = useRelatorio();
+  const {listaRelatorio} = useRelatorio();
+
   //---------------get user name ------------------------//
 
   const columnsPets: GridColDef[] = [
@@ -83,6 +85,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { ["pet-token"]: token } = parseCookies(ctx);
 
   if (!token) {
+    destroyCookie(null, "pet-token");
     return {
       redirect: {
         destination: "/",
@@ -92,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   return {
-    props: {},
+    props: {data: token},
   };
 };
 

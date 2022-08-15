@@ -22,7 +22,6 @@ const LoginUser: NextPage = () => {
   const submitHandler = (e: SyntheticEvent,) => {
     e.preventDefault();
     setLoading(true)
-    console.log(e)
       signIn(data).catch((err)=>{
         if (err.message === "Network Error") {
           // network error
@@ -32,25 +31,7 @@ const LoginUser: NextPage = () => {
       }
       )
     }
-  /*
-  async function userLogin(){
-    await ApiServices.post('/token/',{
-      email,
-      password
-    }).then((response) =>{
-      const access = response.data.access
-      const refresh = response.data.refresh
-      console.log("função userLogin")
-      //console.log('esse é o access '+ access)
-      //console.log('esse é o refresh '+ refresh)
-    })
-    .catch((error: AxiosError<any> ) =>{
-      if(error !== null){
-        console.log(error)
-      }
-    })
-    }
-  */
+
   return (
     <>
           <Paper

@@ -6,23 +6,14 @@ import {
 import { Link, Button } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import {  destroyCookie } from "nookies";
+import { destroyCookie } from "nookies";
 import { AuthContext } from "../../data/context/AuthContext";
 import { useContext } from "react";
 
 export default function HeaderHome() {
-  const {isAuthenticated, user} = useContext(AuthContext)
-  console.log(isAuthenticated)
-  /*
-  function useVerifyTokenExist(){
-    const {username, verifyTokenExist} = useShowUserName();
-    if(verifyTokenExist() != false){
-      return (
-        <span>Ola, {username}</span>
-      )
-    }
-  }
-  */
+  const { isAuthenticated, logOut } = useContext(AuthContext);
+
+
   const router = useRouter();
 
   const handleClick = (e: any) => {
@@ -31,12 +22,11 @@ export default function HeaderHome() {
   };
 
   const handleDestroyCookie = (e: any) => {
-      destroyCookie(null, "pet-token");
-      destroyCookie(null, "pet-token");
-      console.log("saiu com sucesso")
-      window.location.reload();
+    destroyCookie(null, "pet-token");
+    console.log("saiu com sucesso");
+    logOut(false);
   };
-  return ( 
+  return (
     <HeaderContainer>
       <div>
         <Logo
@@ -79,4 +69,3 @@ export default function HeaderHome() {
     </HeaderContainer>
   );
 }
-
