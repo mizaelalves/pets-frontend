@@ -1,4 +1,3 @@
-import "../components/styles/globals.css";
 import type { AppProps } from "next/app";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
@@ -11,8 +10,8 @@ import UserHeader from "../components/Header/userHeader";
 import { useRouter } from "next/router";
 import { AuthProvider } from "../data/context/AuthContext";
 import HeaderAuth from "../components/Header/headerAuth";
-import { Typography } from "@mui/material";
-import "../app.css";
+
+import "./styles.css";
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
