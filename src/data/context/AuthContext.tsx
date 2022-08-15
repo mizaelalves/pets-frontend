@@ -3,7 +3,7 @@ import { ApiServices, AuthHeader } from "../services/apiServices";
 import Router from "next/router";
 import { setCookie, parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
-import { recoverUserInformation } from "../services/authUser";
+
 interface User {
   user_id: string;
 }
@@ -22,54 +22,32 @@ type AuthContextType = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider(props: { children: JSX.Element }) {
-  const [user, setUser] = useState<User | any>(null)
+  const [user, setUser] = useState<User | any>(null);
 
   const isAuthenticated = !!user;
 
-  useEffect(()=>{
-    const {'pet-token':token} =parseCookies()
-
-    if(token){
-      recoverUserInformation().then((response: any) => {
-        const access = response.data.access;
-        //const refresh = response.data.refresh;
-        const decode = JSON.stringify(jwt_decode(access));
-        const objDecode = JSON.parse(decode);
-        setCookie(undefined, "pet-token", access, {
-          maxAge: 60 * 60 * 1,
-        });
-
-        /*ApiServices.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${access}`;
-        */
-        setUser({ user_id: objDecode.user_id });
-      })
-    }
-  }, [])
-
   async function signIn({ email, password }: SignInData) {
-    await ApiServices.post("/token/", {
-      email,
-      password,
-    }, AuthHeader)
-      .then((response) => {
-        const access = response.data.access;
-        //const refresh = response.data.refresh;
-        const decode = JSON.stringify(jwt_decode(access));
-        const objDecode = JSON.parse(decode);
-        setCookie(undefined, "pet-token", access, {
-          maxAge: 60 * 60 * 1,
-        });
+    await ApiServices.post(
+      "/token/",
+      {
+        email,
+        password,
+      },
+      AuthHeader
+    ).then((response) => {
+      const access = response.data.access;
+      const refresh = response.data.refresh;
 
-        /*ApiServices.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${access}`;
-        */
-        setUser({ user_id: objDecode.user_id });
-        Router.push("/user/dashboard");
-      })
-     
+      const decode = JSON.stringify(jwt_decode(access));
+      const objDecode = JSON.parse(decode);
+      setCookie(undefined, "pet-token", access, {
+        maxAge: 60 * 60 * 1,
+      });
+      setCookie(undefined, "pet-token-refresh", refresh );
+
+      setUser({ user: objDecode.user_id });
+      Router.push("/user/dashboard");
+    });
   }
 
   return (

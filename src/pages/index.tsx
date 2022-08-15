@@ -37,7 +37,7 @@ const Home: NextPage = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    setInterval(() => setShowButton(true), 3000);
+    setInterval(() => setShowButton(true), 10000);
   }, []);
 
   function loading() {

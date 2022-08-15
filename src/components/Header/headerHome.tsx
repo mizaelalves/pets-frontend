@@ -6,12 +6,13 @@ import {
 import { Link, Button } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-
-import { parseCookies, destroyCookie } from "nookies";
-
+import {  destroyCookie } from "nookies";
+import { AuthContext } from "../../data/context/AuthContext";
+import { useContext } from "react";
 
 export default function HeaderHome() {
-  const { "pet-token": token } = parseCookies();
+  const {isAuthenticated, user} = useContext(AuthContext)
+  console.log(isAuthenticated)
   /*
   function useVerifyTokenExist(){
     const {username, verifyTokenExist} = useShowUserName();
@@ -45,7 +46,7 @@ export default function HeaderHome() {
           sx={{ cursor: "pointer" }}
         />
         <LinksContainer>
-          {token === undefined ? (
+          {!isAuthenticated ? (
             <>
               <Button variant="contained">
                 <Link component={NextLink} href={"/user/login"}>

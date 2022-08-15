@@ -29,11 +29,13 @@ export function useShowUserName() {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
+    if(user_id){
     ApiServices.get(`/users/all/?user_id=${user_id}`, AuthHeader).then(
       (response) => {
         setUsername(response.data[0].user_name);
       }
-    );
+    )}
+    return undefined
   }, [token, user_id]);
   return { username, verifyTokenExist };
 }

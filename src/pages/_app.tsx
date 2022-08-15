@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { AuthProvider } from "../data/context/AuthContext";
 import HeaderAuth from "../components/Header/headerAuth";
 import { Typography } from "@mui/material";
-import "../app.css"
+import "../app.css";
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
@@ -25,27 +25,25 @@ function MyApp(props: MyAppProps) {
 
   return (
     <>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <ThemeProviderLegacy theme={theme}>
-
-            {router.pathname === "/" ? (
-              <HeaderContainer />
-            ) : router.pathname === "/user/dashboard" ? (
-              <UserHeader />
-            ) : router.pathname === "/user/subscribe" ? (
-              <HeaderAuth nameType={"subscribe"} />
-            ) : (
-              <HeaderAuth nameType={"login"} />
-            )}
-            <AuthProvider>
+      <AuthProvider>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <ThemeProviderLegacy theme={theme}>
+              {router.pathname === "/" ? (
+                <HeaderContainer />
+              ) : router.pathname === "/user/dashboard" ? (
+                <UserHeader />
+              ) : router.pathname === "/user/subscribe" ? (
+                <HeaderAuth nameType={"subscribe"} />
+              ) : (
+                <HeaderAuth nameType={"login"} />
+              )}
               <Component {...pageProps} />
-            </AuthProvider>
-            <CssBaseline />
- 
-          </ThemeProviderLegacy>
-        </ThemeProvider>
-      </CacheProvider>
+              <CssBaseline />
+            </ThemeProviderLegacy>
+          </ThemeProvider>
+        </CacheProvider>
+      </AuthProvider>
     </>
   );
 }

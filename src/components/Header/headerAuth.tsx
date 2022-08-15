@@ -6,6 +6,8 @@ import {
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { Link, Button } from "@mui/material";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 
 interface AuthProps {
   nameType: string;
@@ -46,7 +48,6 @@ export default function HeaderAuth(props: AuthProps) {
               <Button
                 variant="contained"
                 size="medium"
-
               >
                 Login
               </Button>
@@ -56,4 +57,20 @@ export default function HeaderAuth(props: AuthProps) {
       </div>
     </HeaderContainer>
   );
+}
+export const getServerSideProps: GetServerSideProps = async (ctx) =>{
+  const { ['pet-token']: token} = parseCookies(ctx)
+
+  if(token){
+    return {
+      redirect: {
+        destination: '/user/dashboard',
+        permanent: false
+      }
+    }
+  }
+
+  return{
+    props: {}
+  }
 }

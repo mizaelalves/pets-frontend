@@ -1,3 +1,4 @@
+import { parseCookies, setCookie } from 'nookies';
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { Pet } from "../../@types/Pets";
@@ -21,6 +22,7 @@ export function useIndex() {
         return error
       }
     }
+
 
     useEffect(()=>{
       getData();
@@ -81,3 +83,7 @@ export function useIndex() {
     setMensagem,
   };
 }
+function jwt_decode(access: any): any {
+  throw new Error('Function not implemented.');
+}
+
