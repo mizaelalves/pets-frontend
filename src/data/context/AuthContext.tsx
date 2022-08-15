@@ -28,7 +28,6 @@ export function AuthProvider(props: { children: JSX.Element }) {
 
   useEffect(() => {
     setIsAuthenticated(!!user);
-  
   }, [user])
   
 
@@ -48,7 +47,6 @@ export function AuthProvider(props: { children: JSX.Element }) {
       setCookie(undefined, "pet-token", access, {
         maxAge: 60 * 60 * 1,
       });
-
       setUser({ user: objDecode.user_id });
       Router.push("/user/dashboard");
     });

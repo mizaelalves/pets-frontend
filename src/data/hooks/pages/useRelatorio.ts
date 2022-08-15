@@ -10,14 +10,11 @@ export function useRelatorio() {
   const { api, AuthHeader } = getAPIClient();
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await api.get("/adocao", AuthHeader);
+    api.get("/adocao/", AuthHeader).then((response) => {
       setListaRelatorio(response.data);
-    }
-    return () => {
-      fetchData()
-    };
-  }, [AuthHeader, api]);
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { listaRelatorio };
 }

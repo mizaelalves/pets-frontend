@@ -6,7 +6,7 @@ import { useUserSubscribe } from "../../data/hooks/pages/useUserSubscribe";
 import Router from "next/router";
 
 const SubscribenUser: NextPage = () => {
-  const [loading, setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
   const {
     first_name,
     user_name,
@@ -34,7 +34,7 @@ const SubscribenUser: NextPage = () => {
     return false;
   }
   function showMessagePassword() {
-    if(confirmPassword.length >0){
+    if (confirmPassword.length > 0) {
       return verifyPassword(password, confirmPassword) ? (
         <div>
           <span style={{ color: "green" }}>Senha confirmada</span>
@@ -46,29 +46,25 @@ const SubscribenUser: NextPage = () => {
       );
     }
   }
-  
+
   const submitHandler = (e: SyntheticEvent) => {
     e.preventDefault();
 
-
-      subscribeUser()
-      setLoading(true)
-    }
-      
+    subscribeUser();
+    setLoading(true);
+  };
 
   useEffect(() => {
-    if(error.length>0){
-      setLoading(false)
+    if (error.length > 0) {
+      setLoading(false);
     }
+  }, [error]);
 
-  }, [error])
-  
-    /*
+  /*
         subscribeUser(data).catch((error)=>{
       setError(error.response?.data.detail)
     })
     */
-  
 
   return (
     <div>
@@ -156,7 +152,7 @@ const SubscribenUser: NextPage = () => {
                 type="submit"
                 fullWidth
                 disabled={loading}
-                sx={{ marginTop: "20px"}}
+                sx={{ marginTop: "20px" }}
               >
                 Login
               </Button>

@@ -6,13 +6,13 @@ import {
 import { Link, Button } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { destroyCookie } from "nookies";
 import { AuthContext } from "../../data/context/AuthContext";
 import { useContext } from "react";
+import { useCookies } from "react-cookie";
 
 export default function HeaderHome() {
   const { isAuthenticated, logOut } = useContext(AuthContext);
-
+  const [cookies, setCookie, removeCookie] = useCookies(['pet-token']);
 
   const router = useRouter();
 
@@ -22,7 +22,7 @@ export default function HeaderHome() {
   };
 
   const handleDestroyCookie = (e: any) => {
-    destroyCookie(null, "pet-token");
+    removeCookie('pet-token');
     console.log("saiu com sucesso");
     logOut(false);
   };
