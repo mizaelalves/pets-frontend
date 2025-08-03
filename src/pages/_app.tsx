@@ -10,6 +10,7 @@ import UserHeader from "../components/Header/userHeader";
 import { useRouter } from "next/router";
 import { AuthProvider } from "../data/context/AuthContext";
 import HeaderAuth from "../components/Header/headerAuth";
+import { CookiesProvider } from 'react-cookie';
 
 import "./styles.css";
 const clientSideEmotionCache = createEmotionCache();
@@ -24,6 +25,7 @@ function MyApp(props: MyAppProps) {
 
   return (
     <>
+    <CookiesProvider>
       <AuthProvider>
         <CacheProvider value={emotionCache}>
           <ThemeProvider theme={theme}>
@@ -41,8 +43,9 @@ function MyApp(props: MyAppProps) {
               <CssBaseline />
             </ThemeProviderLegacy>
           </ThemeProvider>
-        </CacheProvider>
-      </AuthProvider>
+          </CacheProvider>
+        </AuthProvider>
+      </CookiesProvider>
     </>
   );
 }

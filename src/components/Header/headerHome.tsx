@@ -12,7 +12,7 @@ import { useCookies } from "react-cookie";
 
 export default function HeaderHome() {
   const { isAuthenticated, logOut } = useContext(AuthContext);
-  const [cookies, setCookie, removeCookie] = useCookies(['pet-token']);
+  const [cookies, setCookie, removeCookie] = useCookies(["pet-token"]);
 
   const router = useRouter();
 
@@ -22,7 +22,7 @@ export default function HeaderHome() {
   };
 
   const handleDestroyCookie = (e: any) => {
-    removeCookie('pet-token');
+    removeCookie("pet-token");
     console.log("saiu com sucesso");
     logOut(false);
   };
@@ -38,27 +38,47 @@ export default function HeaderHome() {
         <LinksContainer>
           {!isAuthenticated ? (
             <>
-              <Button variant="contained">
-                <Link component={NextLink} href={"/user/login"}>
+              <Button variant="contained" color="primary">
+                <Link
+                  component={NextLink}
+                  href={"/user/login"}
+                  sx={{ color: "inherit", textDecoration: "none" }}
+                >
                   Login
                 </Link>
               </Button>
 
-              <Button variant="contained">
-                <Link component={NextLink} href={"/user/subscribe"}>
+              <Button variant="contained" color="primary">
+                <Link
+                  component={NextLink}
+                  href={"/user/subscribe"}
+                  sx={{ color: "inherit", textDecoration: "none" }}
+                >
                   Inscreva-se
                 </Link>
               </Button>
             </>
           ) : (
             <>
-              <Button variant="contained">
-                <Link component={NextLink} href={"/user/dashboard"}>
+              <Button variant="contained" color="primary">
+                <Link
+                  component={NextLink}
+                  href={"/user/dashboard"}
+                  sx={{ color: "inherit", textDecoration: "none" }}
+                >
                   Dashboard
                 </Link>
               </Button>
-              <Button variant="contained" onClick={handleDestroyCookie}>
-                <Link component={NextLink} href={"/"}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleDestroyCookie}
+              >
+                <Link
+                  component={NextLink}
+                  href={"/"}
+                  sx={{ color: "inherit", textDecoration: "none" }}
+                >
                   Sair
                 </Link>
               </Button>

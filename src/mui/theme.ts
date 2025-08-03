@@ -1,8 +1,11 @@
 import { createTheme } from "@mui/material/styles";
+
 const theme = createTheme({
   palette: {
     primary: {
       main: "#AE0FEA",
+      // Adicionado para corrigir o contraste do texto no botão
+      contrastText: "#FFFFFF", 
     },
     secondary: {
       main: "#C5C5C5",
@@ -13,10 +16,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins"
+    fontFamily: "Poppins",
   },
   shape: {
-    borderRadius: "3px",
+    borderRadius: 3,
   },
   components: {
     MuiButton: {
@@ -25,8 +28,8 @@ const theme = createTheme({
           textTransform: "none",
           borderRadius: "5px",
           width: "auto",
-          height: "36px"
-          
+          height: "36px",
+          // A linha 'color' foi removida para permitir que o tema funcione corretamente
         },
       },
     },
@@ -64,4 +67,4 @@ const theme = createTheme({
   },
 });
 
-export default theme ;
+export default theme;
